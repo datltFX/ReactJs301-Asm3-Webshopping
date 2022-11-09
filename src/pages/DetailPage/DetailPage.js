@@ -18,10 +18,10 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const dataCart = useSelector(dataCartProduct);
-  console.log(dataCart);
+  // console.log(dataCart);
   //luu dataCart LocalStorage
   saveToLocalStorage("dataCart", dataCart);
-  console.log(dataCart);
+  // console.log(dataCart);
 
   //lay data
   const data = useSelector(stateData);
@@ -63,7 +63,7 @@ const DetailPage = () => {
     const indexCart = dataCart.findIndex(
       (e) => e.item._id.$oid === product._id.$oid
     );
-    console.log(indexCart);
+    // console.log(indexCart);
     // truyen action update
     if (indexCart >= 0) {
       dispatch(UPDATE_CART({ index: indexCart, quantityUpdate: quantity }));
@@ -76,7 +76,7 @@ const DetailPage = () => {
         })
       );
     }
-
+    alert("them vao gio hang thanh cong!");
     navigate("/cart");
   };
 

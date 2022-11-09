@@ -74,10 +74,3 @@ export const REMOVE_CART = (indexDelete) => {
     payload: indexDelete,
   };
 };
-//action localtransmit
-export const LOCAL_TRANSMIT = (local) => {
-  return {
-    type: "local-transmit",
-    payload: local,
-  };
-};

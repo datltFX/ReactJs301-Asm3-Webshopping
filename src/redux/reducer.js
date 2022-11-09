@@ -1,3 +1,5 @@
+import { getTolocalStorage } from "../data/localstorage";
+
 //0.format price
 const formatPrice = (str) => {
   const string = String(str);
@@ -15,7 +17,9 @@ const initialState = {
   formatPrice,
   statePopup: { display: false },
   stateCategoryShopPage: "All",
-  dataCartProduct: [],
+  dataCartProduct: localStorage.getItem("dataCart")
+    ? getTolocalStorage("dataCart")
+    : [],
 };
 //3.reducer
 const rootReducer = (state = initialState, action) => {
@@ -75,7 +79,7 @@ const rootReducer = (state = initialState, action) => {
       };
     // dat them-bot hang
     case "update-cart":
-      let updateCart = state.dataCartProduct;
+      let updateCart = [...state.dataCartProduct];
       updateCart[action.payload.index].quantityCart =
         updateCart[action.payload.index].quantityCart +
         action.payload.quantityUpdate;
@@ -86,16 +90,9 @@ const rootReducer = (state = initialState, action) => {
       };
     //xoa hang
     case "remove-cart":
-      let removeCart = state.dataCartProduct;
+      const removeCart = [...state.dataCartProduct];
       removeCart.splice(action.payload, 1);
       return { ...state, dataCartProduct: removeCart };
-
-    //cap nhap du lieu tu localStorage
-    case "local-transmit":
-      return {
-        ...state,
-        dataCartProduct: action.payload,
-      };
     default:
       return state;
   }

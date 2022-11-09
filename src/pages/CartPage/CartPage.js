@@ -22,23 +22,25 @@ const CartPage = () => {
   const dispatch = useDispatch();
   //lay data
   const dataCart = useSelector(dataCartProduct);
+  // console.log(dataCart);
   //luu dataCart LocalStorage
   saveToLocalStorage("dataCart", dataCart);
-  // console.log(ddataCart);
   const formatPrice = useSelector(stateFormatPrice);
   const [productCart, setProductCart] = useState(dataCart);
   const [total, setTotal] = useState(0);
-
+  console.log(productCart);
   useEffect(() => {
     setProductCart(dataCart);
-    //tinh total
+  }, [dataCart]);
+  // console.log(productCart);
+
+  // tinh total
+  useEffect(() => {
     const totalCart = productCart.reduce((total, val) => {
       return total + val.item.price * val.quantityCart;
     }, 0);
     setTotal(totalCart);
-  }, []);
-  console.log(productCart);
-
+  }, [productCart]);
   //update tang giam
   const minusHandler = (i) => {
     // console.log(e);
@@ -52,8 +54,7 @@ const CartPage = () => {
 
   //xoa product
   const removeHandler = (i) => {
-    // e.preventDefault();
-    console.log(i);
+    //  console.log(i);
     // truyen action xoa store
     dispatch(REMOVE_CART(i));
   };

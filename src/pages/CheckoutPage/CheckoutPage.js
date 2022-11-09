@@ -8,7 +8,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const formatPrice = useSelector(stateFormatPrice);
   const dataCheckout = useSelector(dataCartProduct);
-  console.log(dataCheckout);
+  // console.log(dataCheckout);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {

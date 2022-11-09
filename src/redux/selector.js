@@ -1,4 +1,4 @@
-//select dataHoame
+//select dataHome
 export const stateData = (state) => state.dataHome;
 //select formatPrice
 export const stateFormatPrice = (state) => state.formatPrice;

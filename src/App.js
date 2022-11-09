@@ -10,8 +10,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { DATA_HOME, LOCAL_TRANSMIT } from "./redux/action";
-import { getTolocalStorage } from "./data/localstorage";
+import { DATA_HOME } from "./redux/action";
 
 function App() {
   //ham truyen action
@@ -23,13 +22,6 @@ function App() {
     )
       .then((res) => res.json())
       .then((data) => dispatch(DATA_HOME(data))); //truyen data
-
-    //lay data tu localstorage
-    const dataCartProduct = getTolocalStorage("dataCart");
-    console.log(dataCartProduct);
-    if (dataCartProduct && dataCartProduct.length > 0) {
-      dispatch(LOCAL_TRANSMIT(dataCartProduct));
-    }
   }, []);
 
   return (
