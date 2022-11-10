@@ -13,6 +13,7 @@ const formatPrice = (str) => {
 
 //2.initial state
 const initialState = {
+  stateDataLogin: {},
   dataHome: [],
   formatPrice,
   statePopup: { display: false },

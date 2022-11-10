@@ -28,7 +28,6 @@ const CartPage = () => {
   const formatPrice = useSelector(stateFormatPrice);
   const [productCart, setProductCart] = useState(dataCart);
   const [total, setTotal] = useState(0);
-  console.log(productCart);
   useEffect(() => {
     setProductCart(dataCart);
   }, [dataCart]);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getTolocalStorage, saveToLocalStorage } from "../../data/localstorage";
@@ -11,11 +11,14 @@ const LoginPage = () => {
   //luu tru thong tin khai bao
   const [isEmail, setIsEmail] = useState("");
   const [isPassword, setIsPassword] = useState("");
+  const [usersData, setUsersData] = useState("");
   //lay data tu localStorage
-
-  const userArr =
-    getTolocalStorage("users") === null ? [] : getTolocalStorage("users");
-
+  useEffect(() => {
+    const userArr = getTolocalStorage("users");
+    // === null ? [] : getTolocalStorage("users");
+    userArr === null ? setUsersData([]) : setUsersData(userArr);
+  }, []);
+  // console.log(usersData);
   //xac thuc thong tin
   const validateForm = () => {
     //kiem tra thong tin dien vao
@@ -45,7 +48,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (validateForm()) {
       //tìm kiếm thông tin đăng nhập CurrentUser trong UserAray
-      const currentUser = userArr.find(
+      const currentUser = usersData.find(
         (user) => user.email === isEmail && user.password === isPassword
       );
 
@@ -55,15 +58,13 @@ const LoginPage = () => {
         //luu LocalStorage
         saveToLocalStorage("currentUserActive", currentUser);
         //truyen action
-        dispatch(ON_LOGIN({ isEmail, isPassword }));
+        dispatch(ON_LOGIN({ email: isEmail, password: isPassword }));
         navigate("/");
       } else {
         alert("User doesn't exist or wrong information ");
         setIsPassword("");
       }
     }
-    //truyen action
-    dispatch();
   };
 
   return (
