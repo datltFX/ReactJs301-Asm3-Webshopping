@@ -1,5 +1,4 @@
 import "./Footer.css";
-// import footer from "./App.module.css";
 const Footer = () => {
   return (
     <div className="wapperFooter row">

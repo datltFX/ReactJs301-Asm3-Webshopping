@@ -6,7 +6,6 @@ import Popup from "../Popup/Popup";
 import "./ListProducts.css";
 
 const ListProducts = () => {
-  // const [data, setData] = useState([]);
   const [idImage, setidImage] = useState("");
 
   //ham truyen action
