@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
@@ -25,22 +25,40 @@ const NavBar = () => {
     setName("");
     removeTolocalStorage("currentUserActive");
   };
+
+  //render
   return (
     <div className="navBar">
       <nav className="row">
         <div className="col-md-4">
-          <Link className="homeLink" to="/">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "pageLink active" : "pagesLink"
+            }
+            end
+          >
             Home
-          </Link>
-          <Link className="pagesLink" to="/shop">
+          </NavLink>
+          <NavLink
+            to="/shop"
+            className={({ isActive }) =>
+              isActive ? "pageLink active" : "pagesLink"
+            }
+          >
             Shop
-          </Link>
+          </NavLink>
         </div>
         <div className=" col-md-4 boutique">Boutique</div>
         <div className="col-md-4">
-          <Link className="pagesLink" to="/cart">
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive ? "pageLink active" : "pagesLink"
+            }
+          >
             <FontAwesomeIcon icon={faCartArrowDown} /> Cart
-          </Link>
+          </NavLink>
           {name === "" ? (
             <Link className="pagesLink" to="/login">
               <FontAwesomeIcon icon={faUser} /> Login
