@@ -2,7 +2,6 @@
   margin: auto;
   padding-top: 15px;
   background-color: #fff;
-  /* background-color: rgb(236, 29, 29); */
   width: 80%;
 }
 
@@ -19,7 +18,7 @@
   padding-right: 30px;
 }
 
-.homeLink {
+.active {
   color: rgb(252, 168, 13);
   text-decoration: none;
   font-style: italic;
